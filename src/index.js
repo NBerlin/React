@@ -13,6 +13,57 @@ function Square(props) {
     );
 }
 
+class SubmitForm extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      value:["",""],
+    };
+    
+    this.handleChangeFront = this.handleChangeFront.bind(this);
+    this.handleChangeBack = this.handleChangeBack.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChangeFront(event){
+    const valueCopy = this.state.value;
+    valueCopy[0] = event.target.value;
+    this.setState({
+      value: valueCopy
+    })
+  }
+
+  handleChangeBack(event){
+    const valueCopy = this.state.value;
+    valueCopy[1] = event.target.value;
+    this.setState({
+      value: valueCopy
+    })
+  }
+
+  handleSubmit(event) {
+    this.props.callBack(this.state.value);
+    event.preventDefault();
+    this.setState({
+      value:["",""]
+    });
+    
+  }
+
+  render(){
+    return (
+      <form className="submitForm" onSubmit={this.handleSubmit}>
+        <input className="submitFormPart" type="text" value={this.state.value[0]} onChange={this.handleChangeFront} />
+        <br />
+        <input className="submitFormPart" type="text" value={this.state.value[1]} onChange={this.handleChangeBack} />
+        <br />
+        <input className="submitFormPart" type="submit" value="Submit" />
+        </form>
+    );
+  }
+
+}
+
 class Board extends React.Component {
 
   constructor(props){
@@ -41,16 +92,39 @@ class Board extends React.Component {
     );
   }  
 
+  callBack = value => {
+    const squaresFrontsideCopy = this.state.squaresFrontside;
+    const squaresBacksideCopy = this.state.squaresBackside;
+    const squaresFacingFrontCopy = this.state.squaresFacingFront;
+
+    squaresFrontsideCopy.push(value[0]);
+    squaresBacksideCopy.push(value[1]);
+    squaresFacingFrontCopy.push(true);
+
+    this.setState({
+      squaresFrontside: squaresFrontsideCopy,
+      squaresBackside: squaresBacksideCopy,
+      squaresFacingFront: squaresFacingFrontCopy
+    })
+  };
+
 
   render() {
   const items = []
 
-  for (const[index, value] of this.state.squaresFrontside.entries()){
+  for (const[index] of this.state.squaresFrontside.entries()){
     items.push(this.renderSquare(index))
   }
     return (
   <div>
+    <div>
+
+    
     {items}
+    </div>
+    <div>
+    <SubmitForm callBack={this.callBack}/>
+    </div>
   </div>
     );
   }

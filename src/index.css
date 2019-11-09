@@ -16,7 +16,15 @@ body {
   .status {
     margin-bottom: 10px;
   }
-  
+  .submitForm {
+    margin-top: 10px;
+    float: left;
+    clear: both;
+  }
+  .submitFormPart{
+    margin-top: 3px;
+    float: left;
+  }
   .square {
     background: #fff;
     padding: 10px;
@@ -24,6 +32,7 @@ body {
     float: left;
     font-size: 24px;
     margin-right: 10px;
+    margin-top: 5px;
   }
   
   .square:focus {
