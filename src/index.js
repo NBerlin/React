@@ -117,9 +117,7 @@ class Board extends React.Component {
   }
     return (
   <div>
-    <div>
-
-    
+    <div className="flexBox">
     {items}
     </div>
     <div>

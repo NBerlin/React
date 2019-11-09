@@ -1,22 +1,4 @@
-body {
-    font: 14px "Century Gothic", Futura, sans-serif;
-    margin: 20px;
-  }
-  
-  ol, ul {
-    padding-left: 30px;
-  }
-  
-  .board-row:after {
-    clear: both;
-    content: "";
-    display: table;
-  }
-  
-  .status {
-    margin-bottom: 10px;
-  }
-  .submitForm {
+.submitForm {
     margin-top: 10px;
     float: left;
     clear: both;
@@ -25,30 +7,23 @@ body {
     margin-top: 3px;
     float: left;
   }
+  .flexBox{
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+  }
   .square {
-    background: #fff;
+    flex-grow: 1;
+    min-height: 200px;
+    min-width: 400px;
+    max-width: 650px;
+    word-break: normal;
+    color: white;
+    background: #274156;
     padding: 10px;
-    border: 1px solid #999;
     float: left;
     font-size: 24px;
     margin-right: 10px;
-    margin-top: 5px;
+    margin-top: 10px;
   }
-  
-  .square:focus {
-    outline: none;
-  }
-  
-  .kbd-navigation .square:focus {
-    background: #ddd;
-  }
-  
-  .game {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .game-info {
-    margin-left: 20px;
-  }
-  
