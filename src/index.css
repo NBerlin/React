@@ -20,10 +20,15 @@
     max-width: 650px;
     word-break: normal;
     color: white;
-    background: #274156;
     padding: 10px;
     float: left;
     font-size: 24px;
     margin-right: 10px;
     margin-top: 10px;
+  }
+  .squareFront{
+    background: #274156;
+  }
+  .squareBack{
+    background: #2a9d8f;
   }

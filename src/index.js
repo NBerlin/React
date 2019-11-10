@@ -6,7 +6,7 @@ import './index.css';
 function Square(props) {
     return (
       <button 
-      className = "square" 
+      className = {props.className + " square"} 
       onClick = { props.onClick }> 
         {props.text}
       </button>
@@ -86,6 +86,7 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
     <Square 
+        className={this.state.squaresFacingFront[i] ? 'squareFront' : 'squareBack'}
         text={this.state.squaresFacingFront[i] ? this.state.squaresFrontside[i] : this.state.squaresBackside[i]}
         onClick={() => this.onClick(i)}
     />
