@@ -32,3 +32,11 @@
   .squareBack{
     background: #2a9d8f;
   }
+
+  @media (max-width: 769px) {
+    .square {
+      min-width: 70px;
+      max-width: 200px;
+    }
+    
+}
