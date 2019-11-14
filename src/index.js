@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import ls from 'local-storage';
 
 
 function Square(props) {
@@ -52,13 +53,18 @@ class SubmitForm extends React.Component {
 
   render(){
     return (
-      <form className="submitForm" onSubmit={this.handleSubmit}>
-        <input className="submitFormPart" type="text" value={this.state.value[0]} onChange={this.handleChangeFront} />
-        <br />
-        <input className="submitFormPart" type="text" value={this.state.value[1]} onChange={this.handleChangeBack} />
-        <br />
-        <input className="submitFormPart" type="submit" value="Submit" />
-        </form>
+      <div className="submitForm">
+        <form  onSubmit={this.handleSubmit}>
+          <input className="submitFormPart" type="text" value={this.state.value[0]} onChange={this.handleChangeFront} />
+          <br />
+          <input className="submitFormPart" type="text" value={this.state.value[1]} onChange={this.handleChangeBack} />
+          <br />
+          <input className="submitFormPart" type="submit" value="Submit" />
+          </form>
+          
+          <button className="submitFormPart" onClick={this.props.callBackClear}> Clear all notes</button>
+        </div>
+      
     );
   }
 
@@ -69,9 +75,9 @@ class Board extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      squaresFrontside: ["test","Nikzquita"],
-      squaresBackside: ["hue", "nue"],
-      squaresFacingFront:[true, true]
+      squaresFrontside: ls.get('squareFrontside') || [],
+      squaresBackside: ls.get('squaresBackside') || [],
+      squaresFacingFront: ls.get('squaresFacingFront') || []
     }
   }
 
@@ -81,6 +87,18 @@ class Board extends React.Component {
     this.setState({
       squaresFacingFront: squaresFacingFrontCopy,
     });
+    ls.set("squaresFacingFront", squaresFacingFrontCopy );
+  }
+  clearAll = () =>{
+    this.setState({
+      squaresFrontside: [],
+      squaresBackside: [],
+      squaresFacingFront: []
+    })
+
+    ls.set('squaresFacingFront', []);
+    ls.set('squaresBackside', []);
+    ls.set('squareFrontside', []);
   }
 
   renderSquare(i) {
@@ -107,6 +125,10 @@ class Board extends React.Component {
       squaresBackside: squaresBacksideCopy,
       squaresFacingFront: squaresFacingFrontCopy
     })
+
+    ls.set('squaresFacingFront', squaresFacingFrontCopy);
+    ls.set('squaresBackside', squaresBacksideCopy);
+    ls.set('squareFrontside', squaresFrontsideCopy);
   };
 
 
@@ -122,7 +144,7 @@ class Board extends React.Component {
     {items}
     </div>
     <div>
-    <SubmitForm callBack={this.callBack}/>
+    <SubmitForm callBackClear={this.clearAll} callBack={this.callBack}/>
     </div>
   </div>
     );
