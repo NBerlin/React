@@ -9,7 +9,8 @@
   }
   .submitFormPartbutton{
     margin-top: 3px;
-    margin-right:3px ;
+    margin-right:3px;
+    margin-left: 2px;
     float: left;
     color: #274156;
     background:transparent;
