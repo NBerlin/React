@@ -7,6 +7,20 @@
     margin-top: 3px;
     float: left;
   }
+  .submitFormPartbutton{
+    margin-top: 3px;
+    margin-right:3px;
+    margin-left: 2px;
+    float: left;
+    color: #274156;
+    background:transparent;
+    border: 2px solid #274156;
+    border-radius: 6px;
+  }
+  .submitFormPartbutton:hover{
+    background-color: #008CBA;      
+    color: white;
+  }
   .flexBox{
     display: flex;
     justify-content: flex-start;

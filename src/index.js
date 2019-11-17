@@ -63,10 +63,10 @@ class SubmitForm extends React.Component {
           <br />
           <input className="submitFormPart" type="text" value={this.state.value[1]} onChange={this.handleChangeBack} />
           <br />
-          <input className="submitFormPart" type="submit" value="Submit" />
+          <input className="submitFormPartbutton" type="submit" value="Submit" />
           </form>
           
-          <button className="submitFormPart" onClick={this.props.callBackClear}> Clear all notes</button>
+          <button className="submitFormPartbutton" onClick={this.props.callBackClear}> Clear all notes</button>
         </div>
       
     );
