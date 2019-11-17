@@ -103,7 +103,9 @@ class Board extends React.Component {
     squaresFrontsideCopy.splice(i,1);
     squaresBacksideCopy.splice(i,1);
     squaresFacingFrontCopy.splice(i,1);
-    
+    if(squaresFacingFrontCopy[i]){
+      squaresFacingFrontCopy[i]=!squaresFacingFrontCopy[i];
+    }
     this.setState({
       squaresFacingFront: squaresFacingFrontCopy,
       squaresBackside: squaresBacksideCopy,
