@@ -6,11 +6,15 @@ import ls from 'local-storage';
 
 function Square(props) {
     return (
-      <button 
+      <button
       className = {props.className + " square"} 
       onClick = { props.onClick }> 
+      <div className="deleteButton" onClick={ props.deleteOnClick }>
+        X
+      </div>
         {props.text}
-      </button>
+       
+        </button> 
     );
 }
 
@@ -89,6 +93,28 @@ class Board extends React.Component {
     });
     ls.set("squaresFacingFront", squaresFacingFrontCopy );
   }
+
+  deleteOnClick(i){
+
+    const squaresFrontsideCopy = this.state.squaresFrontside;
+    const squaresBacksideCopy = this.state.squaresBackside;
+    const squaresFacingFrontCopy = this.state.squaresFacingFront;
+
+    squaresFrontsideCopy.splice(i,1);
+    squaresBacksideCopy.splice(i,1);
+    squaresFacingFrontCopy.splice(i,1);
+    
+    this.setState({
+      squaresFacingFront: squaresFacingFrontCopy,
+      squaresBackside: squaresBacksideCopy,
+      squaresFrontside: squaresFrontsideCopy
+    });
+    ls.set('squaresFacingFront', squaresFacingFrontCopy);
+    ls.set('squaresBackside', squaresBacksideCopy);
+    ls.set('squareFrontside', squaresFrontsideCopy);
+    console.log(squaresFrontsideCopy,squaresBacksideCopy,squaresFacingFrontCopy)
+  }
+
   clearAll = () =>{
     this.setState({
       squaresFrontside: [],
@@ -107,6 +133,7 @@ class Board extends React.Component {
         className={this.state.squaresFacingFront[i] ? 'squareFront' : 'squareBack'}
         text={this.state.squaresFacingFront[i] ? this.state.squaresFrontside[i] : this.state.squaresBackside[i]}
         onClick={() => this.onClick(i)}
+        deleteOnClick={() => this.deleteOnClick(i)}
     />
     );
   }  
